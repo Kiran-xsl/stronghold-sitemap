@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stronghold Rescue &amp; Relief, Sitemap: First Launch &amp; Prioritized Future Backlog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Libre+Baskerville:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#002647; --steel:#003D70; --gold:#FCC438; --rust:#7D4A33; --sand:#F6F6F6;
+    --navy-2:#003D70; --line:rgba(246,246,246,.12); --line-strong:rgba(246,246,246,.22);
+    --txt:#F6F6F6; --txt-dim:#9FB0BE; --p1:#FCC438; --p2:#5B8AA6; --p3:#7D4A33;
+    --crit:#B23A2E; --high:#FCC438; --med:#5B8AA6;
+    --good:#FCC438; --warn:#B23A2E; --steelb:#5B8AA6;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--navy);color:var(--txt);font-family:'Inter',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--gold)}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 22px}
+
+  /* Header */
+  header.top{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#002647,#003D70)}
+  .top .wrap{padding:34px 22px 26px}
+  .eyebrow{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  h1{font-family:'Bebas Neue',sans-serif;font-weight:400;letter-spacing:.02em;font-size:clamp(34px,5vw,58px);line-height:.98;margin:10px 0 6px}
+  .sub{color:var(--txt-dim);max-width:820px;font-size:15px}
+  .meta{margin-top:14px;font-size:12px;color:var(--txt-dim);display:flex;gap:18px;flex-wrap:wrap}
+  .meta b{color:var(--txt);font-weight:600}
+
+  /* Thesis band */
+  .thesis{background:var(--navy-2);border-bottom:1px solid var(--line)}
+  .thesis .wrap{padding:22px}
+  .thesis h2{font-family:'Bebas Neue';font-size:24px;letter-spacing:.03em;margin:0 0 10px;color:var(--sand)}
+  .thesis p{margin:0 0 12px;max-width:980px;color:#cdd8e0;font-size:14.5px}
+  .thesis .pull{font-family:'Libre Baskerville',serif;font-style:italic;color:var(--gold);font-size:16px;border-left:3px solid var(--gold);padding-left:14px;margin:6px 0 0}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:18px}
+  .stat{flex:1 1 150px;min-width:150px;background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+  .stat .n{font-family:'Bebas Neue';font-size:30px;color:var(--gold);line-height:1}
+  .stat .l{font-size:11.5px;color:var(--txt-dim);margin-top:4px}
+
+  /* Controls */
+  .controls{position:sticky;top:0;z-index:30;background:rgba(0,38,71,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .controls .wrap{padding:12px 22px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .ctl-label{font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--txt-dim);margin-right:2px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .chip{cursor:pointer;border:1px solid var(--line-strong);background:transparent;color:var(--txt);padding:6px 12px;border-radius:20px;font-size:12.5px;font-weight:500;font-family:inherit;transition:.15s}
+  .chip:hover{border-color:var(--gold)}
+  .chip.active{background:var(--gold);color:var(--navy);border-color:var(--gold);font-weight:700}
+  .chip .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .chip.active .dot{background:var(--navy) !important}
+  .sortwrap{display:flex;gap:8px;align-items:center;margin-left:auto}
+  .sortwrap.hidden{display:none}
+  .mini{cursor:pointer;background:transparent;border:1px solid var(--line-strong);color:var(--txt-dim);font-family:inherit;font-size:11.5px;padding:5px 10px;border-radius:7px}
+  .mini:hover{color:var(--txt);border-color:var(--gold)}
+  .mini.active{color:var(--navy);background:var(--gold);border-color:var(--gold);font-weight:700}
+
+  /* Layout */
+  .main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:26px;padding:22px 0 60px}
+  @media(max-width:900px){.main{grid-template-columns:1fr}}
+
+  .section-head{display:flex;align-items:baseline;gap:10px;margin:6px 0 12px}
+  .section-head .lbl{font-family:'Bebas Neue';letter-spacing:.04em;font-size:20px;color:var(--sand);text-transform:uppercase}
+  .section-head .cnt{font-size:11px;color:var(--txt-dim);letter-spacing:.04em}
+  .section-note{font-size:12.5px;color:var(--txt-dim);margin:-4px 0 14px;max-width:560px}
+  .sectionblock{margin-bottom:26px}
+  .sectionblock.hidden{display:none}
+
+  /* Tree */
+  .node{margin-bottom:8px}
+  .row{display:flex;align-items:flex-start;gap:10px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer;background:linear-gradient(180deg,rgba(0,61,112,.16),rgba(0,61,112,.06));transition:.15s}
+  .row:hover{border-color:var(--gold);transform:translateX(2px)}
+  .row.sel{border-color:var(--gold);background:rgba(252,196,56,.12);box-shadow:0 0 0 1px var(--gold) inset}
+  .twist{width:14px;flex:0 0 14px;color:var(--txt-dim);font-size:11px;margin-top:4px;transition:.2s;user-select:none}
+  .twist.open{transform:rotate(90deg)}
+  .twist.leaf{opacity:0}
+  .rank{flex:0 0 26px;width:26px;height:26px;border-radius:7px;border:1px solid var(--line-strong);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:15px;color:var(--gold);margin-top:1px}
+  .rtitle{font-weight:600;font-size:15px;color:var(--sand)}
+  .rmeta{display:flex;gap:6px;align-items:center;margin-top:5px;flex-wrap:wrap}
+  .rdesc{font-size:12.5px;color:var(--txt-dim);margin-top:4px}
+  .pill{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;padding:2px 7px;border-radius:5px;color:var(--navy)}
+  .pr-Critical{background:var(--crit);color:#fff}
+  .pr-High{background:var(--high)}
+  .pr-Medium{background:var(--med);color:#fff}
+  .children{margin:8px 0 0 18px;padding-left:14px;border-left:1px dashed var(--line-strong)}
+  .new-badge{font-size:9px;font-weight:800;letter-spacing:.05em;color:#F6F6F6;background:var(--rust);border:1px solid var(--rust);border-radius:4px;padding:1px 5px;text-transform:uppercase}
+
+  /* score chips (mini, in list) */
+  .scorechips{display:flex;gap:5px;align-items:center;flex-wrap:wrap}
+  .sc{font-size:9.5px;font-weight:700;letter-spacing:.03em;padding:2px 6px;border-radius:5px;border:1px solid var(--line-strong);color:var(--txt-dim);white-space:nowrap}
+  .sc b{font-weight:800}
+  .sc.good{border-color:rgba(252,196,56,.5);color:#FCC438;background:rgba(252,196,56,.12)}
+  .sc.mid{border-color:rgba(91,138,166,.5);color:#cfe0ec;background:rgba(91,138,166,.12)}
+  .sc.low{border-color:var(--line-strong);color:var(--txt-dim);background:transparent}
+  .sc.cost-hi{border-color:rgba(178,58,46,.55);color:#f0c2b6;background:rgba(178,58,46,.14)}
+  .sc.cost-mid{border-color:rgba(91,138,166,.5);color:#cfe0ec;background:rgba(91,138,166,.12)}
+  .sc.cost-lo{border-color:rgba(252,196,56,.5);color:#FCC438;background:rgba(252,196,56,.12)}
+
+  .verdict{font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:800;padding:2px 8px;border-radius:5px}
+  .v-quick{background:var(--gold);color:#002647}
+  .v-fast{background:var(--steelb);color:#06202e}
+  .v-big{background:#003D70;color:var(--sand)}
+  .v-easy{background:#7FB3C4;color:#06202e}
+  .v-later{background:transparent;border:1px solid var(--line-strong);color:var(--txt-dim)}
+  .v-blocked{background:var(--warn);color:#fff}
+
+  /* Detail */
+  .detail{position:sticky;top:64px;align-self:start;max-height:calc(100vh - 84px);overflow:auto}
+  .detail-card{border:1px solid var(--line-strong);border-radius:14px;background:linear-gradient(180deg,#003D70,#002647);padding:0;overflow:hidden}
+  .dc-head{padding:20px 22px 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(0,61,112,.28),transparent)}
+  .dc-crumb{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  .dc-title{font-family:'Bebas Neue';font-size:32px;letter-spacing:.02em;color:#fff;line-height:1;margin:0 0 10px}
+  .dc-tags{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .dc-body{padding:18px 22px 24px}
+  .blk{margin-bottom:20px}
+  .blk h4{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 8px;display:flex;align-items:center;gap:7px}
+  .why{font-size:14.5px;color:#dfe7ec}
+  ul.clean{margin:0;padding-left:18px}
+  ul.clean li{margin-bottom:6px;font-size:13.5px;color:#cdd8e0}
+  .metric{background:rgba(252,196,56,.08);border:1px solid rgba(252,196,56,.3);border-radius:9px;padding:12px 14px}
+  .metric ul{margin:0;padding-left:18px}
+  .metric li{font-size:13px;color:#FCC438;margin-bottom:5px}
+  .modln{font-size:12.5px;color:var(--txt-dim);background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:8px;padding:9px 12px}
+  .modln b{color:var(--sand)}
+
+  /* priority block */
+  .prio{border:1px solid rgba(91,138,166,.35);border-radius:11px;overflow:hidden}
+  .prio-row{display:grid;grid-template-columns:128px 44px 1fr;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line)}
+  .prio-row:last-child{border-bottom:0}
+  .prio-row .ax{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt-dim);font-weight:600}
+  .prio-row .sw{font-size:13.5px;color:#cdd8e0}
+  .scbig{justify-self:start;font-family:'Bebas Neue';font-size:18px;width:38px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center}
+  .verdict-line{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;font-size:13px;color:#cdd8e0}
+  .blocker{margin-top:10px;font-size:12.5px;color:#F6F6F6;background:rgba(0,0,0,.28);border:1px solid rgba(178,58,46,.55);border-left:3px solid #B23A2E;border-radius:8px;padding:9px 12px}
+
+  /* lens tabs */
+  .lenswrap{border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  .lenstabs{display:flex}
+  .lenstab{flex:1;cursor:pointer;text-align:center;padding:10px 6px;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--txt-dim);background:rgba(0,0,0,.18);border:none;border-bottom:2px solid transparent;font-family:inherit}
+  .lenstab:hover{color:var(--txt)}
+  .lenstab.active{color:var(--navy);background:var(--gold);border-bottom-color:var(--gold)}
+  .lensbody{padding:14px 16px;font-size:13.5px;color:#cdd8e0;min-height:60px}
+
+  .empty{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--txt-dim);padding:60px 26px;border:1px dashed var(--line-strong);border-radius:14px}
+  .empty .big{font-family:'Bebas Neue';font-size:26px;color:var(--txt);letter-spacing:.03em;margin-bottom:6px}
+
+  footer{border-top:1px solid var(--line);color:var(--txt-dim);font-size:12px}
+  footer .wrap{padding:22px}
+  .legend-foot{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+  .scorekey{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:11.5px;color:var(--txt-dim)}
+  .scorekey span b{color:var(--sand)}
+  .hidden{display:none !important}
+  code{background:rgba(0,0,0,.3);padding:1px 5px;border-radius:4px;font-size:12px;color:var(--gold)}
+
+  /* module launch badges + clickable module refs */
+  .mod-launch{font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:5px;white-space:nowrap}
+  .mod-launch.now{background:rgba(252,196,56,.16);color:#FCC438;border:1px solid rgba(252,196,56,.5)}
+  .mod-launch.fut{background:rgba(91,138,166,.16);color:#cfe0ec;border:1px solid rgba(91,138,166,.5)}
+  .modref{cursor:pointer;font-family:inherit;font-weight:800;color:#FCC438;background:rgba(252,196,56,.1);border:1px solid rgba(252,196,56,.4);border-radius:5px;padding:0 5px;font-size:12px;line-height:1.55}
+  .modref:hover{background:rgba(252,196,56,.22)}
+  .modref.on{background:var(--gold);color:var(--navy)}
+  .modexpand:not(:empty){margin-top:10px}
+  .modcard{border:1px solid rgba(252,196,56,.3);border-radius:9px;background:rgba(0,0,0,.22);padding:11px 13px}
+  .modcard-h{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13px;color:var(--sand);margin-bottom:6px}
+  .modcard-b{font-size:12.5px;color:#cdd8e0;margin-bottom:6px}
+  .modcard-pages{font-size:11.5px;color:var(--txt-dim)}
+  .modhint{font-size:11px;color:var(--txt-dim);margin-top:7px;font-style:italic}
+  .brandlock{margin:0 0 14px}
+  .wordmark{height:clamp(38px,5.2vw,54px);width:auto;display:block}
+  @media(max-width:560px){ .wordmark{height:34px} }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brandlock"><img class="wordmark" alt="Stronghold Rescue & Relief" src="data:image/png;base64,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"></div>
+    <div class="eyebrow">Website Architecture</div>
+    <h1>ReImagine, Replatform &amp; Relaunch</h1>
+    <p class="sub">Launch a newly redesigned website. The <b>First Launch</b> focuses on the key pages that tell the story and lift awareness and conversion, paired with a <b>prioritized Future backlog</b> scored on Business Value, Supporter Value, and Level of Effort. Click any page for why it exists, what goes on it, what success looks like, the three-lens read, and (for Future pages) its build priority.</p>
+    <div class="meta">
+      <span><b>Prepared by</b> Indigo Tones</span>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <span class="ctl-label">View</span>
+    <div class="chips" id="viewChips">
+      <button class="chip" data-view="all">All</button>
+      <button class="chip active" data-view="mvp"><span class="dot" style="background:var(--good)"></span>First Launch</button>
+      <button class="chip" data-view="future"><span class="dot" style="background:var(--steelb)"></span>Future backlog</button>
+      <button class="chip" data-view="modules"><span class="dot" style="background:var(--gold)"></span>Module library</button>
+    </div>
+    <div class="sortwrap" id="sortwrap">
+      <span class="ctl-label">Sort backlog</span>
+      <button class="mini active" data-sort="rank">Recommended</button>
+      <button class="mini" data-sort="bv">Business value</button>
+      <button class="mini" data-sort="sv">Supporter value</button>
+      <button class="mini" data-sort="loe">Effort (low first)</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="main">
+    <div class="tree">
+      <div class="sectionblock" id="mvpBlock">
+        <div class="section-head"><span class="lbl">First Launch</span><span class="cnt" id="mvpCount"></span></div>
+        <div id="mvpRoot"></div>
+      </div>
+      <div class="sectionblock" id="futureBlock">
+        <div class="section-head"><span class="lbl">Future, Prioritized Backlog</span><span class="cnt" id="futureCount"></span></div>
+        <div class="section-note">Built in future phases, mostly by composing modules the first launch already shipped. Recommended order is value-first (combined supporter + business value), with effort as the tiebreaker. Re-sort above.</div>
+        <div id="futureRoot"></div>
+      </div>
+      <div class="sectionblock hidden" id="moduleBlock">
+        <div class="section-head"><span class="lbl">Module Library</span><span class="cnt" id="moduleCount"></span></div>
+        <div class="section-note">14 reusable GenerateBlocks patterns. Each page builds the modules it introduces and reuses the rest, so a module is only built once. M8 (named-person) is the one module the first launch does not build, it is introduced in a future phase by Beneficiary Stories. Build each as a synced pattern or Global Block with a unique HTML anchor and an sh- class, then compose pages from them. Real field photography only, never stock.</div>
+        <div id="moduleRoot"></div>
+      </div>
+    </div>
+    <div class="detail">
+      <div id="detailHost">
+        <div class="empty">
+          <div class="big">Select a page</div>
+          <div>Pick any page to see the why, the content, the success metric, the three-lens read, and (for Future pages) its build-priority scoring.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div>Each page carries a <b>priority</b> (<span class="pill pr-Critical">Critical</span> <span class="pill pr-High">High</span> <span class="pill pr-Medium">Medium</span>). Future pages also carry a <b>build verdict</b> (<span class="verdict v-quick">Quick win</span> <span class="verdict v-fast">Fast-follow</span> <span class="verdict v-big">Big bet</span> <span class="verdict v-easy">Easy add</span> <span class="verdict v-later">Later</span> <span class="verdict v-blocked">Blocked</span>) and three H/M/L scores with a stated reason. Pages marked <span class="new-badge">New</span> do not exist on the current Squarespace site.</div>
+    <div class="scorekey">
+      <span><b>Business Value (BV):</b> revenue, growth, attribution, risk reduction. H is better.</span>
+      <span><b>Supporter Value (SV):</b> how much supporters asked for it / how it serves the relationship. H is better.</span>
+      <span><b>Level of Effort (LOE):</b> build + content cost. <b>L is better</b> (cheaper). Driven mostly by module reuse vs a new module build.</span>
+    </div>
+    <div class="legend-foot">
+      <span><b>Voice rules (Brand Book):</b> lead with "supporters"; "donor" is fine for segments and major-gift context · invitation never guilt · show one named story, never "we served 10,000" · dignity always · real field photography, never stock.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+const LENS = {m:"Marketer", u:"UX / IA", c:"CX / Content"};
+
+const DATA = [
+  /* ============================ FIRST LAUNCH (MVP) SET (9) ============================ */
+  {
+    id:"home", title:"Homepage", tier:"mvp", priority:"Critical", new:false,
+    desc:"Confirm this is the real thing they just heard about, build trust, and route by intent.",
+    modules:"Builds M1 hero, M2 featured rescue (pinned scroll-story), M4 trust strip, M5 three-beat model, M6 latest-dispatches preview (uses the M3 horizontal scroll-snap technique), M7 impact teaser, M9 primary give CTA, M11 media logos, M12 sticky give/subscribe bar, M14 newsletter. M8 named-person lives on Beneficiary Stories, M10 owned form on Give, M13 FAQ in the footer.",
+    why:"Most visitors to the site come mid-podcast or mid-reel, on mobile, with high emotion and low patience. The homepage has one job: reassure them \"this is the real thing I just heard about,\" confirm they are in the right place, build trust and pride, and give everyone a quick way to support Stronghold, then put one specific rescue story in front of them and route them to the path that fits their intent.",
+    content:[
+      "Field-footage hero (real, documentary, never stock) + one-line mission",
+      "One featured named rescue story, the kind supporters recite from memory",
+      "Trust strip: Charity Navigator 4-star rating, Candid Platinum Seal, \"Join [supporter count] supporters\", secure giving + EIN",
+      "How We Work in three beats: Rescue / Relief / Dignity (the M5 module, also reused on the About page)",
+      "Latest field dispatches + media logos (MrBallen, Jocko) as borrowed trust",
+      "Persistent, high-contrast Donate button; sitewide newsletter capture"
+    ],
+    metric:["Click-through into an intent path (Stories / Impact / Donate) vs. bounce","Increased average session time","% of visitors who scroll down to the featured story"],
+    m:"This is the router, not the destination. Lead with story + transparency proof + social proof. Don't bury the value behind a brand video nobody watches. Every entry channel lands here or on a matched page, then converts.",
+    u:"Instant legitimacy is the design constraint, the visitor must recognize at a glance that this is the organization they just heard about. Photo-first hero with a proper text scrim for WCAG contrast. Persistent donate in the header. Resist a carousel of everything, one story, one clear set of paths.",
+    c:"The emotional hit that proves the work is alive today. Ephraim is the entry point in the hero; the story does the convincing. No guilt, no \"we can't do it without you\", an invitation into something real."
+  },
+  {
+    id:"mission", title:"Our Mission / About", tier:"mvp", priority:"High", new:false,
+    desc:"Who we are, the model, and the founding story, consolidated into one credible page for launch.",
+    modules:"Builds M5 three-beat (the Charity-with-Dignity model); reuses M2, M9, M12, M14. Team / Where We Work / How We Work will be built in a future phase.",
+    why:"Even loyal supporters in the debrief struggled to explain what Stronghold is to a friend, and the vetting researcher needs the what / who / where answered fast and credibly. For launch we consolidate the scattered About content into one hub: it carries the founding narrative, names the lean, operator-led, train-and-equip model that makes supporters trust the efficiency, and equips word-of-mouth. The deeper Mission pages (Team, Where We Work, How We Work) will be built out in a future phase.",
+    content:[
+      "Clear one-paragraph \"who we are\" up top",
+      "Founding story in operator voice",
+      "The model: operator-led, train-and-equip locals, lean overhead, and why that is the value",
+      "What makes Stronghold different: the \"Charity With Dignity\" model, stated plainly",
+      "Onward links to Stories, Impact, and Give; Team / Where We Work / How We Work built in a future phase"
+    ],
+    metric:["Findability of \"what is Stronghold\" (task success in testing)","About → Donate","About → Stories → Donate","Time-on-page / read depth"],
+    m:"Positioning lives here: veteran-led operators who go where almost no one else will, with documented efficiency. This is also the page that helps supporters spread the word and bring you new supporters and one-time donors. Own the higher-overhead-than-you'd-expect story instead of hiding it: \"here's why, and here's what it buys.\"",
+    u:"A consolidating hub, long-form but scannable: pull quotes, subheads, field photos breaking the text. Keep a donate path visible. Don't wall it off, and don't over-build, Team / Where We Work / How We Work are separate Future pages.",
+    c:"Pure operator voice, factual and understated. State the \"Charity With Dignity\" model plainly; the conviction behind the work should be felt. Banned: AI-flavored corporate copy (Ephraim: \"I hate anything that sounds AI-generated… it degrades trust\")."
+  },
+  {
+    id:"stories", title:"Stories", tier:"mvp", priority:"Critical", new:false,
+    desc:"The #1 supporter demand (85%). The retention and conversion engine.",
+    modules:"Builds M6 dispatch card grid (the content-spine UI); reuses M9 inline give CTA, M14 newsletter.",
+    why:"85% of supporters want field stories above all else, and 48.4% gave because of one specific narrative. Stories are simultaneously the conversion tool (emotional) and the retention tool (proof the work is alive). This hub replaces the thin, fragmented /updates/ blog and becomes the content spine of the site.",
+    content:["Filterable dispatch grid by region and type, photo-led","Inline newsletter capture + contextual donate CTA on every story","Share buttons (this base is 89% promoters, make sharing effortless)","Feeds from one Field Dispatch template; Beneficiary / Courage / Start Here collections built in a future phase"],
+    metric:["Scroll depth ≥ 75% on story pages","Story → Donate CTA click-through","Return visits from email","Cadence held on a reliable monthly schedule (Brand Book)"],
+    m:"This is where social and podcast traffic should land, a shareable, link-friendly story, not a homepage. Each story is a conversion surface and an SEO asset. Feed it relentlessly.",
+    u:"Card grid, filter by region/type, generous imagery, fast on mobile. Replaces the scattered blog. Every story template has the same donate + newsletter modules baked in.",
+    c:"The story formula: real situation → real operator → real named person reached → the good that came → \"this is what your support made possible\" → soft invitation. Never show a problem you haven't already solved or are working on solving."
+  },
+  {
+    id:"dispatches", title:"Field Dispatch (story template)", tier:"mvp", priority:"Critical", new:false, parent:"stories",
+    desc:"One template generates every story page. The proven conversion trigger.",
+    modules:"Builds the repeatable story template: M2 pinned scroll-story, M3 horizontal gallery, M9 inline give CTA, M14 newsletter. Every future story type reuses this.",
+    why:"The single highest-demand content type and the proven conversion trigger. These are the stories supporters quote back to you months later. They prove ongoing life, the absence of which nearly caused a documented near-churn (\"are these guys legit? Did they fall off the planet?\"). Build the template once; the Dispatch Library fills it.",
+    content:["One named person, one place, one moment per story","Real field photo/video, documentary style","Restored verbatim detail where powerful (e.g. the ambulance driver the Burma Army called in on the radio)","Inline give CTA framed as invitation"],
+    metric:["Story engagement / read-through","Story → recurring conversion","Cadence: fresh dispatches on a reliable schedule"],
+    m:"Each dispatch is an ad unit and an SEO page. Repurpose into social and email. The content engine that feeds every channel starts here.",
+    u:"Consistent, photo-first template. Fast load on cellular. Share + donate modules every time. This template is the reusable spine, build it to a high bar once.",
+    c:"Show, don't summarize, one rescue beats \"we served 10,000.\" Raw over polished; supporters reward \"this is real.\" Dignity in every frame. Verify claims before publishing."
+  },
+  {
+    id:"impact", title:"Impact / Transparency", tier:"mvp", priority:"Critical", new:true,
+    desc:"The largest untapped trust lever, currently invisible. Must be in primary nav.",
+    modules:"Builds M7 impact equivalency visual (the trust lever); reuses M4 trust strip, M13 FAQ/answer block. A light financials summary lives here at launch. The recurring \"By the Numbers\" monthly recap publishes here too, reusing M7's stat visual and the M6 grid for past months.",
+    why:"54% of supporters want impact reports and transparency is a top trust signal, yet there is no clear \"where your money goes\" breakdown anywhere on the current site. A two-year supporter said he still can't see it. This page converts the effectiveness-seeker and protects retention by proving stewardship.",
+    content:["\"Where your money goes\" as one clean visual, Ephraim's ask: \"a dollar bill, one cent here, four cents there\"","Real outcome numbers (e.g. patients transported last year), verified by finance","Recurring \"By the Numbers\" monthly recap, a short, repeatable scorecard of the month's outcomes (ambulance trips, patients transported, trainings), continuing the cadence supporters already follow on the current site","Charity Navigator 4-star and Candid Platinum Seal badges; a readable use-of-funds summary (full 990 page is a Future backlog item)","Own the overhead, don't apologize for it"],
+    metric:["Impact → Donate conversion / assisted conversions","Researcher dwell time","Contribution to churn reduction","\"By the Numbers\" recap return-reads / email opens"],
+    m:"A sleeping conversion weapon. A clear, honest cost breakdown is something most peers never show, and Stronghold has nothing like it visible today. Make transparency a signature and anchor it here, with every figure verified by finance before it goes public.",
+    u:"Lead with a single clear chart, not a fragile custom dashboard. Badges near the giving CTA. Ship the trust signal now; iterate interactivity later.",
+    c:"Frame as accountability, not bragging, humble confidence. Use impact equivalencies as the on-voice device that makes the supporter the actor: \"you put 3 med packs in Burma.\""
+  },
+  {
+    id:"give", title:"Give", tier:"mvp", priority:"Critical", new:true,
+    desc:"The whole site's success metric. FundraiseUp inline Donation Form on an owned /give page, not a modal.",
+    modules:"Builds M10 owned donate form (the single most important module); reuses M4 trust strip, M9 inline CTA, M12 sticky router.",
+    why:"A Stronghold-owned /give page built on FundraiseUp's inline Donation Form element, their highest-converting embed, keeps donors in the page context with our trust signals around the form, and gives us an owned /give URL with a real pageview and on-page funnel step instead of an overlay we can only measure as events. Paired with FundraiseUp's GA4-via-GTM integration and cross-domain tracking, that is what gives clean funnel visibility and attribution; the inline embed alone is not enough, the GA4-via-GTM wiring is what closes the loop. Own the page, instrument it, then drive traffic to it.",
+    content:["FundraiseUp inline Donation Form element embedded on an owned URL (keeps donors on our page)","Monthly pre-selected as default; one-time as a secondary lane","Tiers anchored to impact equivalencies, not bare dollar amounts","Express pay up top for one-tap mobile","Trust signals on-page: Charity Navigator 4-star, Candid Platinum Seal, transparent financials, \"Join [supporter count]\", secure lock, EIN","Confirmation screen + emailed receipt; \"are you sure?\" on close"],
+    metric:["Form-start → completion rate (instrument and baseline at launch)","Time-to-donate","Mobile vs. desktop completion parity","Share of donations attributed to source (near-zero today until FundraiseUp is connected to GA4)"],
+    m:"Instrument the owned page before pointing ad-grant or paid traffic at it, so every dollar of traffic is measurable. Get attribution right first, then scale traffic.",
+    u:"Inline FundraiseUp Donation Form on an owned page, over a modal, is the single most important call in the project. Their Donation Form element does embed inline; the real work is wiring its GA4-via-GTM integration plus cross-domain tracking. QA every browser and mobile combination as a launch gate.",
+    c:"Don't over-build and break what works, 97% of finishers found it easy. Fewer clicks, recurring default, dignified impact-framed tiers. Invitation: \"50 cents a day, you're part of this.\""
+  },
+  {
+    id:"monthly", title:"Become a Monthly Supporter", tier:"mvp", priority:"Critical", new:true, parent:"give",
+    desc:"The default ask, recurring is the overwhelming majority of revenue and the retention engine.",
+    modules:"Reuses M10 owned form (monthly-default config + FRU URL-API prefill), M7 impact equivalency, M9 inline CTA. No new module.",
+    why:"Recurring giving is the proven model and the overwhelming majority of Stronghold's revenue. Churn is an engagement problem, not a price one ($15 and $40 donors churn alike). A dedicated membership page frames recurring as belonging and protects the base. (Built as a distinct /give/monthly page per the FRU inline-form decision.)",
+    content:["Identity statement: \"you're one of us\" / \"this works because of you\"","Impact math by tier (equivalencies)","Supporter testimonials","\"Recurring supporters sustain 70%+ of what we do\" social proof","Default-recurring CTA + upgrade path for sub-$25 givers"],
+    metric:["Recurring start rate; tier mix","One-time → recurring upgrades","Increased recurring supporter count","Retention / tenure extension"],
+    m:"The highest-leverage retention lever in the program. Even nudging today's sub-$25 monthly donors up toward $25 is a five-figure annual opportunity on its own. Frame membership as identity, not transaction.",
+    u:"Make monthly the visually obvious default. Show the impact a tier buys, not just a price. One-tap continue. Reuses the Give form, so it is cost- and time-efficient to build once M10 exists.",
+    c:"Belonging language: \"you made the right choice,\" \"part of the team.\" Recognition at the 10-month mark matters more than any discount."
+  },
+  {
+    id:"subscribe", title:"Newsletter / Subscribe", tier:"mvp", priority:"High", new:false,
+    desc:"Upgrades the existing /newsletter page into a browsable archive of past newsletters plus signup, a retention asset and a clean link-in-bio / campaign destination.",
+    modules:"Builds the standalone M14 newsletter capture as a full page and reuses the M6 card grid to list past newsletters (the archive); reuses M4 trust strip and M9 inline give CTA. Same M14 pattern that also lives sitewide in the footer.",
+    why:"The newsletter page will be a proper home for the email program: a browsable repository of past newsletters plus a clear way to subscribe. The archive is evergreen, indexable content that earns long-tail search traffic and internal links; it is social proof of a consistent cadence; and it lets prospects preview exactly what they will receive before they opt in, which according to research lifts signups. It also captures intent from people who are not ready to give yet but want to stay close.",
+    content:[
+      "One clear value proposition: what you receive (field dispatches, the monthly \"By the Numbers\" recap) and how often",
+      "A browsable archive of every past newsletter, each its own indexable page (the SEO and social-proof asset)","Single-field email capture (M14), reserved height, no friction",
+      "A sample of recent dispatches so the signup is concrete, not abstract",
+      "Trust strip near the form; soft give CTA for those ready to do more",
+      "Confirmation and a welcome email that sets expectations"
+    ],
+    metric:["Subscribe-page opt-in rate","Email signups from campaigns / link-in-bio","Subscriber to first-gift conversion over time","Organic search entrances to archived newsletter pages"],
+    m:"The destination you point every \"stay updated\" CTA at, organic, social, and podcast. Owns the top of the retention funnel and gives not-yet-donors a yes that is not a payment.",
+    u:"Single purpose, one field, one button. State content and cadence clearly to protect open rates. Fast on mobile, reachable from the footer and from every story.",
+    c:"An invitation to stay close, never a guilt-tripped capture. Tell people exactly what they are joining, then honor it."
+  },
+  {
+    id:"footer", title:"Footer & Trust Layer", tier:"mvp", priority:"High", new:false,
+    desc:"Contact, FAQ, Privacy, Financials, newsletter, badges, the quiet trust confirmers.",
+    modules:"Builds M13 FAQ/answer block (also the AEO surface) and the sitewide M14 newsletter; reuses M4 trust strip. Carries the legally-required Privacy/Terms links.",
+    why:"Researchers spend 40 to 55 seconds on Contact / FAQ / Privacy before they commit, these resolve the last objections without cluttering primary navigation. The footer also carries the always-on newsletter capture, plus the Privacy/Terms pages the site legally needs to operate.",
+    content:["Contact, FAQ, Privacy / Terms, Financials links","Secondary navigation to pages outside the top menu, which also strengthens internal linking and crawlability for SEO","Newsletter signup (sitewide)","Charity Navigator 4-star rating, Candid Platinum Seal, EIN, 501(c)(3) status","Social links"],
+    metric:["Newsletter opt-in rate","FAQ / Contact → Donate progression","Footer trust-link engagement among researchers"],
+    m:"Low-glamour, high-trust. Keep these out of primary nav but easy to find, exactly how vetting researchers expect to navigate. It is also the site's secondary navigation and an SEO asset: consistent sitewide footer links help search engines discover and pass authority to deeper pages.",
+    u:"Five primary nav items + Donate; everything else lives here and in contextual links. Don't bloat the top nav.",
+    c:"Plain, honest, reassuring. The newsletter ask is an invitation to stay close, not a guilt-tripped capture."
+  },
+
+  /* ============================ FUTURE BACKLOG (ranked) ============================ */
+  {
+    id:"watch", title:"Watch / Video Hub", tier:"future", rank:1, verdict:"fast", new:true, under:"Top-level nav",
+    desc:"Captures podcast & YouTube traffic that currently bounces at zero conversion.",
+    bv:{s:"H", why:"~46% of discovery is video/podcast; the Mosul video page drew ~2,727 sessions/qtr at zero conversion and YouTube is the #3 source with 81 checkout-opens in 90 days. This is the biggest revenue leak after the form itself."},
+    sv:{s:"H", why:"Supporters explicitly and repeatedly asked for a YouTube/video home in the interviews."},
+    loe:{s:"M", why:"Needs a NEW module (video gallery, not one of the 14) plus a 'continue the mission' CTA matched to the clip, and the cache-vary-on-referrer hero flagged as real PHP/cache work in the build spec."},
+    modules:"New: video-gallery module. Reuses M9 inline CTA, M12 sticky router, M10 form link.",
+    why:"Podcasts and video are the dominant inbound and currently have no home on the site, the Mosul video page pulled ~19,770 views with zero conversion events. Supporters repeatedly asked for a YouTube channel. Watch turns video attention into supporters and is the single biggest post-launch revenue opportunity.",
+    content:["YouTube landing / video gallery with a clear \"continue the mission\" CTA tied to the video just watched","One-tap donate matched to the story the visitor just heard","Hook for per-podcast landing pages (separate, blocked backlog item)"],
+    metric:["Video → Donate click-through","Mosul-style 9.7s bounce replaced with measurable onward clicks","Conversion rate per video source"],
+    m:"Earns a primary-nav slot because the dominant channel had no destination. Replicate the playbook with new partners to hedge MrBallen dependency.",
+    u:"Video-first layout, fast embeds, captions on everything. The continuation CTA is the conversion mechanism, make it unmissable. Resolve full-page cache vary-on-referrer before David starts PHP.",
+    c:"The bridge from \"borrowed trust\" (the host) to Stronghold's own voice. Let the video carry the emotion, then invite, don't interrupt with a hard sell."
+  },
+  {
+    id:"financials", title:"Financials & Accreditation", tier:"future", rank:7, verdict:"quick", new:false, under:"Impact",
+    desc:"The proof the skeptic needs before a major gift. Low-effort to build.",
+    bv:{s:"H", why:"Closes the last objection for high-capacity / major donors who run charity-checker tools before giving, one interviewee did exactly that. Trust infrastructure that unlocks larger gifts and grants."},
+    sv:{s:"M", why:"Vetting researchers want it; the general base cares less. Serves a specific, valuable segment."},
+    loe:{s:"L", why:"Mostly assembly: 990 + audited financials + badges + tables. Reuses M4 trust strip; no new module. A light version already lives on the First Launch Impact page."},
+    modules:"Reuses M4 trust strip + a document/table block. No new module.",
+    why:"The vetting researcher checks legitimacy before donating. Putting financials, accreditation, and the 990 in reach closes the last objection. This is the full version of the summary that ships on the Impact page at launch.",
+    content:["990 + audited financials, presented readably","Charity Navigator 4-star, Candid Platinum Seal, ECFA-type badges","Leadership compensation context","Use-of-funds breakdown linked from the main Impact page"],
+    metric:["Financials → Donate progression","Time-on-page for researchers (40 to 55s benchmark)"],
+    m:"Trust infrastructure. Quietly powerful, removes friction for high-intent, high-capacity donors who diligence before they commit.",
+    u:"Footer-linked and linked from Impact; doesn't need primary nav. Clear tables, downloadable PDFs.",
+    c:"Plain, factual, no spin. Transparency is a relationship promise; meet the standard supporters expect."
+  },
+  {
+    id:"onetime", title:"One-Time & Major Gifts", tier:"future", rank:5, verdict:"quick", new:true, under:"Give",
+    desc:"A diversification lane, one-time donors give 9 to 11x more per gift.",
+    bv:{s:"H", why:"One-time donors give 9 to 11x more per gift, Q4 tax-optimizers have high capacity, and a second lane hedges the recurring-concentration risk. Direct revenue the current single-path funnel leaves on the table."},
+    sv:{s:"H", why:"High-capacity donors want to give large gifts on their own terms instead of emailing the team and waiting; a self-serve major or one-time path lets them act the moment they decide, not a $15/mo widget."},
+    loe:{s:"L", why:"A distinct lane off /give that reuses the M10 form plus a major-donor contact path and DAF/stock/legacy info. No new module."},
+    modules:"Reuses M10 owned form (one-time config) + a contact path. No new module.",
+    why:"The funnel is built entirely for $15/mo recurring, but one-time donors give 9 to 11x more per gift and high-capacity donors have real appetite. A dedicated lane captures revenue the single-path funnel leaves on the table.",
+    content:["Larger one-time giving options with year-end framing","DAF, stock, and legacy/planned giving info","Major-donor contact path"],
+    metric:["One-time gift volume","Major-donor pipeline inquiries","Q4 one-time revenue"],
+    m:"A hedge, not the headline. Recurring retention comes first, but ignoring 9 to 11x-value gifts leaves money on the table, especially at year-end.",
+    u:"Distinct path so big givers aren't forced through a $15/mo widget. Clear options, low friction, human contact for major gifts.",
+    c:"For major and legacy donors the tone shifts to stewardship and partnership. Still no guilt, these are relationships, cultivated over time."
+  },
+  {
+    id:"team", title:"Leadership & Team", tier:"future", rank:3, verdict:"fast", new:false, under:"Our Mission",
+    desc:"De-risks the Ephraim-dependency; carries grant credibility.",
+    bv:{s:"H", why:"All four interviewed supporters anchored trust in one man, the single biggest unmanaged brand risk and a documented red flag for major donors and press. De-risking it protects revenue and unlocks grants."},
+    sv:{s:"H", why:"Supporters' trust currently rests on one person, and the base wobbled toward churn when updates went quiet. Seeing the team and field leaders directly serves that relationship and reassures supporters the mission outlasts any one founder."},
+    loe:{s:"M", why:"Needs a NEW portrait/bio-grid module plus documentary portraits and field-staff anonymity/security handling. Build is moderate; photo + consent is the gate."},
+    modules:"New: portrait/bio-grid module. Reuses M12, M14.",
+    why:"All four interviewed supporters anchored trust in one man. That is the single biggest unmanaged brand risk. This page surfaces the operators, staff, and field leaders so trust can hand off from Ephraim to the institution, while still using his SEAL + Harvard MBA credibility where it counts (grants, legitimacy).",
+    content:["Ephraim bio + short video (the entry point, not the whole story)","Operator-credible team bios, field experience, not corporate titles","\"How it runs when we're not there\", Ephraim's own success metric","Credentials block for grant reviewers"],
+    metric:["Team → Donate path completion","Grant / partnership inquiries","Engagement spread beyond the founder bio"],
+    m:"Diversifying the face of the brand is risk management. A site that's all-Ephraim is one bad news cycle from a confidence shock.",
+    u:"Photo grid with documentary portraits. Keep field staff anonymity where security requires it. Bios short, scannable, human.",
+    c:"Architect the handoff Ephraim agreed to: \"I'm fine being the light that draws the mosquito… then I point to what they're doing.\""
+  },
+  {
+    id:"beneficiary", title:"Beneficiary Stories", tier:"future", rank:9, verdict:"fast", new:true, under:"Stories",
+    desc:"Named people with faces, the #1 unmet content request. Builds the one module the first launch skips.",
+    bv:{s:"M", why:"Deepens the emotional connection that drives both first gifts and retention. Indirect revenue rather than a direct lane."},
+    sv:{s:"H", why:"The #1 unmet content request: supporters explicitly asked to see \"an actual face… a name,\" people \"with families, just like us.\" This content does not exist today."},
+    loe:{s:"M", why:"This is the page that builds M8 (named-person story), the one module the first launch does not force, then reusable. Adds a consent/security workflow and portrait photography, which gate it."},
+    modules:"Builds M8 named-person story (the module the first launch skips). Reuses M9, M14.",
+    why:"Supporters explicitly asked to see \"an actual face… a name,\" people \"with families, just like us.\" This content doesn't exist today. It deepens the emotional connection that drives both first gifts and retention, handled with dignity, never as poverty. It is also the page that justifies building module M8.",
+    content:["Named individuals (with consent), followed over time","Resilience and recovery, not suffering imagery","The person's own words where possible"],
+    metric:["Time-on-page","Return-visit rate","Fills a documented demand gap (qualitative supporter feedback)"],
+    m:"Closes the \"real person, not a number\" gap that converts. Distinct from rescue stories, these are about the people reached, over time.",
+    u:"Profile template (M8) with strong portrait, short narrative, timeline of touchpoints. Consent and security flags built into the workflow.",
+    c:"Dignity is non-negotiable. People are never victims or \"the helpless.\" \"Reached / extracted / transported,\" never \"saved.\" The most sensitive page to get right."
+  },
+  {
+    id:"how", title:"How We Work", tier:"future", rank:4, verdict:"quick", new:true, under:"Our Mission",
+    desc:"The Rescue / Relief / Dignity model, made concrete. Likely already a homepage section.",
+    bv:{s:"H", why:"The dignity differentiator is the core positioning that powers an 89%-promoter word-of-mouth engine, the cheapest acquisition channel the org has."},
+    sv:{s:"H", why:"Supporters explicitly struggled to explain Stronghold to others; this hands them the words, a directly stated need."},
+    loe:{s:"L", why:"Pure reuse of M5 three-beat, which the Homepage and About page already build. Promoting it to a full page is near-free."},
+    modules:"Reuses M5 three-beat. No new module, it already exists from the homepage/About build.",
+    why:"Supporters trust the \"real, not fake\" operating model but can't always articulate it. A short page that names the model turns a feeling into something repeatable and shareable. Because M5 is already built, this is one of the cheapest pages to stand up.",
+    content:["Three pillars: Rescue, Relief, Dignity, each with a real example","The train-and-equip-locals approach","What Stronghold deliberately does NOT do (e.g. field volunteers)"],
+    metric:["Shares / referral-link usage","Assist rate into Donate"],
+    m:"A messaging asset as much as a page, it gives supporters the words to describe you. Reinforces the dignity differentiator competitors don't claim.",
+    u:"Short, modular, icon-light. Lives as a homepage section that expands to a full page. Don't over-engineer.",
+    c:"\"Dignity always\" is the throughline. People are families and communities, never victims. This page models the language the whole site should use."
+  },
+  {
+    id:"involved", title:"Get Involved", tier:"future", rank:2, verdict:"fast", new:true, under:"Top-level nav",
+    desc:"Activates an 89%-promoter base that currently has zero tools.",
+    bv:{s:"H", why:"The referral channel is the untapped growth lever: 89% promoters with no sharing mechanism, and today the page is a dead end. Lowest-cost growth engine on the site, currently switched off."},
+    sv:{s:"H", why:"41.9% of supporters (143 people) want to do more than give, and three of four interviewees volunteered unprompted. Frustrating this group risks losing your most engaged supporters."},
+    loe:{s:"M", why:"The three-door hub layout is cheap (M5-style), but the value depends on the Ambassador tooling (its own higher-effort build) plus the 'we don't recruit for the field' guardrail."},
+    modules:"Reuses M5-style three-panel layout, M9, M14. The real build is the Ambassador child.",
+    why:"41.9% of supporters want to do more than give, and three of four interviewees volunteered unprompted. With 89% promoters and no referral mechanism, this is the highest-leverage, lowest-cost growth lever, and today it's a dead end.",
+    content:["Three clear pathways: Give / Advocate / Apply","Volunteer & advocacy (share, refer, host a booth, back-end help)","Ambassador / refer-a-friend tools (separate build)","Shop / merch and insider briefings linked","Unambiguous guardrail: Stronghold is NOT recruiting for the field"],
+    metric:["Volunteer / advocate signups","Referral-sourced donors (0 → 500 directional)","Merch units; ambassador signups"],
+    m:"The referral program is the untapped channel. An 89%-promoter base with no tools is a growth engine left switched off.",
+    u:"Three obvious doors, each with one clear action. Don't blur \"advocate\" and \"apply.\" Make sharing assets one-click.",
+    c:"Channel the volunteer energy into advocacy, referral, booths, and back-end help while making \"we don't recruit for the field\" unmistakable."
+  },
+  {
+    id:"shop", title:"Shop / Merch", tier:"future", rank:8, verdict:"quick", new:true, under:"Get Involved",
+    desc:"Revenue plus walking-billboard acquisition, demand is unprompted and repeated.",
+    bv:{s:"M", why:"Revenue plus walking-billboard acquisition with real documented demand, but margin-thin and not core to the mission funnel."},
+    sv:{s:"H", why:"Supporters keep asking, unprompted: \"my shirt has holes in it,\" \"add hats,\" a mug used as a daily reminder. Clear identity demand the site doesn't meet."},
+    loe:{s:"L", why:"Explicitly scoped as lightweight print-on-demand, NOT heavy e-commerce. A POD embed/link, so it can't threaten the launch date. (Would be High if a full store.)"},
+    modules:"External POD embed/link. No core module build.",
+    why:"Supporters keep asking, unprompted, for merch, shirts, hats, patches, a mug as a daily reminder. Merch is identity, word-of-mouth, and revenue at once, and it doesn't exist today. The /tshirtform page already shows ready demand (2% bounce, 166s avg session).",
+    content:["Tees, hats (explicitly requested), patches, stickers, mugs","Supporter photos wearing the gear","Note that proceeds support operations","Redirect /tshirtform traffic here on launch"],
+    metric:["Orders / units","New supporters attributed to merch (\"shirt conversations\")"],
+    m:"Walking billboards plus margin. Real, documented demand. Start lightweight (print-on-demand) so it can't threaten the launch date.",
+    u:"Do NOT build heavy e-commerce in this scope, a lightweight shop or POD link under Get Involved. Expand post-launch.",
+    c:"On-voice product copy: \"wear it until it falls apart\" (their words). Operator aesthetic, never gimmicky charity merch."
+  },
+  {
+    id:"start", title:"Start Here", tier:"future", rank:10, verdict:"fast", new:true, under:"Stories",
+    desc:"New-visitor funnel for the story-moved discoverer. Gated on dispatch volume.",
+    bv:{s:"M", why:"Top-of-funnel for cold-but-curious traffic; addresses the ~7-hour trust barrier and assists conversion. Indirect rather than a direct revenue lane."},
+    sv:{s:"M", why:"Helps new arrivals orient; the existing base didn't ask for it."},
+    loe:{s:"M", why:"Pure composition (hero + curated dispatch cards + intro video + single CTA), but gated on at least ~6 published dispatches existing first."},
+    modules:"Reuses M1 hero, M6 dispatch cards, M9 CTA. No new module, but depends on dispatch content.",
+    why:"Ephraim's own theory: people need roughly seven hours with you before they deeply trust you. The story-moved discoverer arrives hot but unconvinced. Start Here funnels them from the clip that hooked them into the longer-form content that builds real conviction.",
+    content:["2-minute intro video + the founding story","Impact snapshot","A link to a full long-form Ephraim interview","Three clear ways to get involved"],
+    metric:["Intro video play rate","Click-through to Donate or to long-form interview"],
+    m:"The top-of-funnel landing target for cold-but-curious traffic. Tie podcast/social campaigns here with UTMs.",
+    u:"A guided, linear page, one decision at a time. Reduce choice overload. End on a single primary action.",
+    c:"Ephraim is the draw here, full stop. Use his voice and face, then start pointing toward the team and the people served."
+  },
+  {
+    id:"ways", title:"Other Ways to Give", tier:"future", rank:15, verdict:"easy", new:false, under:"Give",
+    desc:"DAF, stock, employer match, legacy. Cheap; bundle with One-Time & Major.",
+    bv:{s:"M", why:"DAF, stock, employer match and legacy giving reach a small audience but at very high average gift value. Quiet revenue diversification."},
+    sv:{s:"L", why:"Serves sophisticated, high-capacity givers, a niche, not the broad base."},
+    loe:{s:"L", why:"A reference-style page of instructions + contact per channel. Pure content; reuses existing text blocks. Bundle it with One-Time & Major Gifts."},
+    modules:"Reuses text/content blocks + contact. No new module.",
+    why:"Removes friction for sophisticated and high-capacity givers and supports planned-giving cultivation. Low-traffic but high-value, and cheap enough to ship alongside the One-Time & Major lane.",
+    content:["Donor-advised funds, stock/crypto, employer matching, bequests","Simple instructions and contact for each"],
+    metric:["Assisted major / planned gifts","Inquiries per channel"],
+    m:"Quiet revenue diversification. Low-effort to build, occasionally lands a large gift.",
+    u:"Reference-style page, footer + Give-section linked. Clarity over design flourish.",
+    c:"Factual and helpful. The supporter is doing something generous and complex, make it easy and dignified."
+  },
+  {
+    id:"where", title:"Where We Work (+ regions)", tier:"future", rank:11, verdict:"big", new:false, under:"Our Mission",
+    desc:"Regional hubs (Burma · Afghanistan · Mozambique) that double as the SEO land-grab.",
+    bv:{s:"H", why:"Zero non-branded organic ranking today. Evergreen regional pages target intent keywords (\"conflict zone relief,\" \"humanitarian evacuation\") with no current competition from Stronghold, and pair with the Google Ad Grant."},
+    sv:{s:"M", why:"Orients supporters and makes the scale tangible, but it's more an acquisition asset than a supporter-requested one."},
+    loe:{s:"H", why:"Needs a NEW map/region module, then verified, press-proof conflict context per region (real fact-check burden, e.g. the 'most landmined country' claim Ephraim himself hedged) across three-plus regions. Content-heavy."},
+    modules:"New: map/region module. Reuses M6 dispatch cross-links, M9. Built once, populated per region.",
+    why:"The org ranks for zero mission-category searches and has near-zero topical authority. Evergreen regional pages do double duty: they orient supporters and become the SEO hubs that capture the searches Stronghold is currently invisible for. Start the content now even though it ships later.",
+    content:["A page per active region with map, context, and the work being done there","Non-partisan, 5th-grade-readable conflict context","Cross-links into the matching field stories","Scale framing, make the size of the problem tangible"],
+    metric:["Organic entrances on non-branded regional queries (191/mo → 800/mo)","Region page → Story or Donate onward rate"],
+    m:"The SEO land-grab. Each region is a content hub targeting intent keywords with zero current competition. Pair with the Google Ad Grant.",
+    u:"Template once, populate per region. Map + photo + narrative + linked stories. Make it skimmable; researchers scan before they read.",
+    c:"Verify every claim before publishing (e.g. \"most landmined country\", Ephraim himself hedged it). The voice standard is \"factual enough to survive press scrutiny.\""
+  },
+  {
+    id:"ambassador", title:"Ambassador / Refer-a-Friend", tier:"future", rank:12, verdict:"big", new:true, under:"Get Involved",
+    desc:"Turn 89% promoters into a measurable acquisition channel. A real functional build.",
+    bv:{s:"H", why:"The diversification hedge against MrBallen dependency that the org actually controls. Systematizes word-of-mouth into a measurable, attributable acquisition channel."},
+    sv:{s:"M", why:"Gives the most loyal supporters a role and recognition, valued by a committed minority rather than the whole base."},
+    loe:{s:"H", why:"A real functional build, not a visual module: referral-link generation, attribution/tracking, share flows, and recognition tiers. The heaviest lift in the backlog after Where We Work."},
+    modules:"New: referral engine (link generation + tracking). Reuses M9, M14.",
+    why:"Word-of-mouth is currently informal and untracked despite enormous promoter strength. A structured referral mechanism converts goodwill into new supporters and gives the most loyal people a role. It is the dependency hedge the org controls, but it's a functional build, so it's sequenced deliberately.",
+    content:["Shareable assets and personal referral links","Ambassador tier with recognition / light perks","\"Brief a friend\" framing on-voice","Tracking so referrals are attributable"],
+    metric:["Referrals generated","Referral → donor conversion","Ambassadors enrolled"],
+    m:"The diversification hedge against MrBallen dependency that the org controls. Systematize the 89%.",
+    u:"Dead-simple share flow, prefilled messages, copy-link and native share on mobile. Recognition visible.",
+    c:"Identity and belonging, \"the people who make this possible.\" Give advocates language they're proud to send."
+  },
+  {
+    id:"reports", title:"Annual / Impact Reports", tier:"future", rank:14, verdict:"big", new:false, under:"Impact",
+    desc:"Periodic proof for the retention and major-donor relationship. Seasonal flagship.",
+    bv:{s:"M", why:"A stewardship and cultivation asset for year-end and grant conversations rather than an acquisition page."},
+    sv:{s:"M", why:"Recurring supporters want a periodic year-in-review of what their giving added up to."},
+    loe:{s:"H", why:"A flagship document, web + PDF, high-polish design plus finance-verified data. Heavy and seasonal, best timed to year-end."},
+    modules:"New: flagship report layout (web + PDF). Reuses M7 impact visual, field photography.",
+    why:"Recurring supporters want to see, periodically, what the year added up to. Reports sustain the relationship and support major-donor cultivation. High effort and seasonal, so it sits below the quick wins.",
+    content:["Annual impact summary with field photography","Year-in-review of regions and outcomes","Downloadable, shareable, on-brand"],
+    metric:["Downloads / opens","Major-donor inquiries following release"],
+    m:"A stewardship and cultivation asset more than an acquisition page. Good for year-end and grant conversations.",
+    u:"Design as a flagship document, web + PDF. Low frequency, high polish.",
+    c:"Gratitude-forward: \"this is what your support made possible.\" Never guilt, never a hard ask buried in a thank-you."
+  },
+  {
+    id:"insider", title:"Insider Briefings", tier:"future", rank:6, verdict:"fast", new:true, under:"Get Involved",
+    desc:"Belonging and access for the most committed supporters.",
+    bv:{s:"H", why:"A major-donor cultivation and retention on-ramp: exclusive access turns high-tenure supporters into larger, longer relationships, real relationship revenue."},
+    sv:{s:"H", why:"A supporter proposed exactly this, and it deepens belonging for the most committed base, the people who sustain the org."},
+    loe:{s:"M", why:"Registration + reminder flow + gated content, plus the ongoing operational cost of actually running the live events."},
+    modules:"New: registration + content gating. Reuses M14. Plus event ops.",
+    why:"A supporter proposed a virtual donor briefing + Q&A with the founder and field staff, a \"buy-in\" event. Exclusive access deepens retention among high-tenure supporters and reinforces the feeling of being on the team. A high-value relational layer, sequenced as a fast-follow once the core giving funnel is live.",
+    content:["Virtual briefing + live Q&A registration","Supporter-only behind-the-scenes content not published publicly","Recurring cadence tied to the giving relationship"],
+    metric:["Attendance","Retention of high-tenure / high-value supporters","NPS holding at 85+"],
+    m:"A retention and cultivation tool for your best supporters. Low cost, high relational return, and a natural major-donor on-ramp.",
+    u:"Simple registration + reminder flow. Gate the exclusive content behind supporter status.",
+    c:"\"A briefing for the people who make this possible.\" Exclusivity earned by partnership, communicated with humble confidence."
+  },
+  {
+    id:"courage", title:"Stories of Courage", tier:"future", rank:13, verdict:"easy", new:true, under:"Stories",
+    desc:"The operator stories that currently go untold. Cheap, but low urgency.",
+    bv:{s:"M", why:"Diversifies the hero (team-side trust) and supports major-donor confidence; a deep content well rather than a direct conversion driver."},
+    sv:{s:"M", why:"Compelling content, but not a stated supporter demand."},
+    loe:{s:"L", why:"Pure reuse of the Field Dispatch template, tagged 'team.' No new pattern needed, just content when it's ready."},
+    modules:"Reuses the Field Dispatch template (M2/M3/M9/M14). No new module.",
+    why:"Ephraim notes that Silver-Star-caliber actions by his team go unrecorded. These stories build the team-side of trust (de-risking the founder dependency) and give the brand a deep well of content. Cheap to publish once the template exists, but low urgency.",
+    content:["Operator and local-staff stories of risk and skill","\"How it runs when we're not there\" theme","Tied to the regions where they happened"],
+    metric:["Engagement vs. founder-centric content","Contribution to team-page trust path"],
+    m:"Diversifies the hero. Shows the bench, not just the captain, important for institutional durability and major-donor confidence.",
+    u:"Same story template, tagged \"team.\" No new pattern needed.",
+    c:"Operator voice celebrating operators, humble confidence, never \"heroes\" or \"warriors\" (banned). Let the actions speak."
+  },
+  {
+    id:"podcast-lp", title:"Podcast Landing Pages", tier:"future", rank:16, verdict:"blocked", new:true, under:"Watch",
+    desc:"One page per partner (/mrballen, /jocko, /brcc), blocked until shows use tagged links.",
+    block:"Blocked: not buildable until each show uses a UTM-tagged link in-show and GA4 confirms the traffic. Start the partnership/tagging conversation in parallel with the build.",
+    bv:{s:"H", why:"The highest-converting acquisition surface available: a host-matched, one-tap ask to pre-qualified listeners, and it fixes attribution for the channel."},
+    sv:{s:"L", why:"Purely acquisition-side; offers nothing to the existing supporter base."},
+    loe:{s:"M", why:"The page itself is cheap (an M1 hero track variant + M10 form via named tracks), but it is BLOCKED on a UTM-tagging agreement with each show, the external dependency is the real cost."},
+    modules:"Reuses M1 hero (per-show track), M10 form, M9. No new module, but blocked on UTM tagging.",
+    why:"Pre-qualified listeners arrive trusting the host. A landing page matched to that specific show, offering a one-tap give in the emotional moment, is the highest-converting acquisition surface available. It is structurally ready via named tracks but cannot ship until the shows use tagged links, and you already class dedicated landing pages as a later phase.",
+    content:["Show-specific hero referencing the episode/host","The story featured in that appearance","One-tap, mobile-first donate","UTM'd for clean per-source attribution"],
+    metric:["Conversion rate by podcast source","Attribution coverage (kills the \"unattributed\" problem for this channel)"],
+    m:"Stop sending podcast traffic to a cold homepage. Matched landing pages are conversion-rate multipliers, but only once tagging exists to prove which partnerships pay off.",
+    u:"Minimal, single-purpose, sub-2-second mobile load. Express pay up top. One job: convert the warm visitor.",
+    c:"Mirror the host's framing so the visitor feels continuity. Ephraim's voice carries it home. Invitation, not guilt."
+  }
+];
+
+// ---- helpers ----
+const byId = Object.fromEntries(DATA.map(d=>[d.id,d]));
+const mvp = DATA.filter(d=>d.tier==="mvp");
+const future = DATA.filter(d=>d.tier==="future");
+const mvpRoots = mvp.filter(d=>!d.parent);
+const childrenOf = id => mvp.filter(d=>d.parent===id);
+const VERDICT = {quick:["v-quick","Quick win"],fast:["v-fast","Fast-follow"],big:["v-big","Big bet"],easy:["v-easy","Easy add"],later:["v-later","Later"],blocked:["v-blocked","Blocked"]};
+const valClass = s => s==="H"?"good":(s==="M"?"mid":"low");
+const costClass = s => s==="H"?"cost-hi":(s==="M"?"cost-mid":"cost-lo");
+const valBg = s => s==="H"?"rgba(252,196,56,.18)":(s==="M"?"rgba(91,138,166,.18)":"rgba(159,176,190,.12)");
+const valFg = s => s==="H"?"#FCC438":(s==="M"?"#cfe0ec":"#9FB0BE");
+const costBg = s => s==="H"?"rgba(178,58,46,.2)":(s==="M"?"rgba(91,138,166,.18)":"rgba(252,196,56,.18)");
+const costFg = s => s==="H"?"#f0c2b6":(s==="M"?"#cfe0ec":"#FCC438");
+
+// ---- First Launch (MVP) tree ----
+function mvpNodeHTML(d){
+  const kids = childrenOf(d.id);
+  const hasKids = kids.length>0;
+  const newB = d.new ? '<span class="new-badge">New</span>' : '';
+  let html = `<div class="node" data-id="${d.id}">
+    <div class="row" data-id="${d.id}">
+      <div class="twist ${hasKids?'open':'leaf'}">&#9656;</div>
+      <div style="flex:1">
+        <div class="rtitle">${d.title}</div>
+        <div class="rmeta">
+          <span class="pill pr-${d.priority}">${d.priority}</span>
+          ${newB}
+        </div>
+        <div class="rdesc">${d.desc}</div>
+      </div>
+    </div>`;
+  if(hasKids){
+    html += `<div class="children" data-children="${d.id}">` + kids.map(mvpNodeHTML).join('') + `</div>`;
+  }
+  html += `</div>`;
+  return html;
+}
+document.getElementById('mvpRoot').innerHTML = mvpRoots.map(mvpNodeHTML).join('');
+document.getElementById('mvpCount').textContent = mvp.length + " pages";
+
+// ---- Future list ----
+const rankVal = {H:3,M:2,L:1};
+let futureSort = 'rank';
+function sortedFuture(){
+  const arr = future.slice();
+  if(futureSort==='rank') arr.sort((a,b)=>a.rank-b.rank);
+  if(futureSort==='bv') arr.sort((a,b)=>rankVal[b.bv.s]-rankVal[a.bv.s] || a.rank-b.rank);
+  if(futureSort==='sv') arr.sort((a,b)=>rankVal[b.sv.s]-rankVal[a.sv.s] || a.rank-b.rank);
+  if(futureSort==='loe') arr.sort((a,b)=>rankVal[a.loe.s]-rankVal[b.loe.s] || a.rank-b.rank);
+  return arr;
+}
+function futureRowHTML(d){
+  const [vc,vl] = VERDICT[d.verdict];
+  const newB = d.new ? '<span class="new-badge">New</span>' : '';
+  return `<div class="node" data-id="${d.id}">
+    <div class="row" data-id="${d.id}">
+      <div class="rank">${d.rank}</div>
+      <div style="flex:1">
+        <div class="rtitle">${d.title}</div>
+        <div class="rmeta">
+          <span class="verdict ${vc}">${vl}</span>
+          <span class="scorechips">
+            <span class="sc ${valClass(d.bv.s)}">BV <b>${d.bv.s}</b></span>
+            <span class="sc ${valClass(d.sv.s)}">SV <b>${d.sv.s}</b></span>
+            <span class="sc ${costClass(d.loe.s)}">LOE <b>${d.loe.s}</b></span>
+          </span>
+          ${newB}
+        </div>
+        <div class="rdesc">${d.desc}</div>
+      </div>
+    </div>
+  </div>`;
+}
+function renderFuture(){
+  document.getElementById('futureRoot').innerHTML = sortedFuture().map(futureRowHTML).join('');
+  document.getElementById('futureCount').textContent = future.length + " pages";
+}
+renderFuture();
+
+// ---- module library ----
+const MODULES = [
+  {code:"M1", title:"Field-footage hero", cls:"sh-hero", anchor:"#top", ctag:"Content varies",
+   what:"Full-bleed documentary photo or muted video, one line of mission, one persistent Donate. The page's first proof and the LCP element.",
+   gb:"One top-level GenerateBlocks Container at full height with the field image or video as its background and a bottom legibility scrim. Headline and subhead as Headline elements, CTAs as GB Buttons. Preload the poster, serve AVIF or WebP at 1600 / 768 / 375, reserve height so there is no layout shift. Never lazy-load (it is the LCP). Track variant via a body-class modifier such as sh-hero--track-video.",
+   slots:["Background image or poster, optional muted clip","Headline (Bebas)","Subhead (Inter)","Primary CTA and secondary CTA"],
+   responsive:"Headline at most 2 lines on mobile; CTA full-width and thumb-reachable; on slow connections show the poster image only, no video.",
+   ref:"Apple product hero (restraint, one message).",
+   pages:["Homepage","Start Here","Podcast landing pages (track variant)"]},
+  {code:"M2", title:"Pinned scroll-story", cls:"sh-scrollstory", anchor:"#featured-story", ctag:"Content varies",
+   what:"One named rescue told in documentary beats: a background image or clip holds while short captions advance as the visitor scrolls.",
+   gb:"GenerateBlocks cannot pin on its own. Build the Container shell and the caption beat Containers in GB, then add pinning with a small enqueued script (GSAP ScrollTrigger) or CSS scroll-driven animation. Each beat is a child Container.",
+   slots:["Held background image or video","3 to 5 caption beats, 25 words or fewer each","Closing give invitation (reuses M9)"],
+   responsive:"Reduced-motion and mobile fallback: stacked images and captions, no pin. Never trap scroll on mobile.",
+   ref:"National Geographic long-form features.",
+   pages:["Homepage (featured story)","Our Mission / About (founding story)","Field Dispatch template","Stories of Courage"]},
+  {code:"M3", title:"Horizontal scroll gallery", cls:"sh-rail", anchor:"#gallery", ctag:"Content varies",
+   what:"A sideways-scrolling sequence of named field moments.",
+   gb:"GenerateBlocks Container or Grid with horizontal overflow and native CSS scroll-snap, no JavaScript required. Children are snap-aligned cards. Add a visible scroll affordance and keyboard arrow support.",
+   slots:["Ordered set of image cards","Caption per card"],
+   responsive:"Touch-first; on desktop support keyboard arrows; keep the scroll affordance visible so it does not read as static.",
+   ref:"Apple 'Get to know' rails.",
+   pages:["Field Dispatch template","Homepage preview borrows this technique inside M6"]},
+  {code:"M4", title:"Trust strip", cls:"sh-trust-strip", anchor:"#trust-strip", ctag:"Shared config",
+   what:"Instant third-party credibility in one band: Charity Navigator 4-star, Candid Platinum Seal, Join [supporter count] supporters, secure giving plus EIN.",
+   gb:"Build once as a Global Block or synced pattern: a GB Container with a Grid of proof points (badge image plus label). Pull the numbers and badges from ONE source so editing once updates every page. Static, no layout shift.",
+   slots:["Charity Navigator 4-star badge","Candid Platinum Seal","Supporter count","Secure-giving lock and EIN"],
+   responsive:"2 by 2 grid of proof points on mobile; badges stay legible; no horizontal scroll.",
+   ref:"No external reference (utility pattern).",
+   pages:["Homepage","Give","Impact","Footer and Trust layer"]},
+  {code:"M5", title:"Three-beat model", cls:"sh-model", anchor:"#how-we-work", ctag:"Shared content",
+   what:"Rescue, Relief, Dignity as three linked panels, each with one real example, not adjectives.",
+   gb:"GenerateBlocks Grid, 3 columns on desktop and stacked on mobile. Each beat is a Container with its own deeplink anchor (#beat-rescue, #beat-relief, #beat-dignity).",
+   slots:["Three beat titles","One real example line each","Link to How We Work"],
+   responsive:"Stack vertically on mobile; 3-column grid on desktop.",
+   ref:"National Geographic chaptered explainer.",
+   pages:["Homepage","Our Mission / About","How We Work","Get Involved (three-door variant)"]},
+  {code:"M6", title:"Dispatch card grid", cls:"sh-dispatch-grid", anchor:"#dispatches", ctag:"From Dispatch Library",
+   what:"Filterable, photo-led story cards by region and type. The content spine of the site.",
+   gb:"GenerateBlocks Query Loop bound to the Dispatch Library (the Dispatches custom post type), rendering a card pattern (sh-dispatch-card) built once. Filter by region or type taxonomy. Lazy-load below the fold.",
+   slots:["Card pattern: photo, title, region or type tag, excerpt","Filter controls (taxonomy)"],
+   responsive:"Horizontal scroll-snap (the M3 technique) or stacked on mobile; lazy-load images.",
+   ref:"New York Times or National Geographic story index.",
+   pages:["Stories hub","Homepage (3 latest)","Start Here","Where We Work (region-filtered)","Impact (By the Numbers archive)","Newsletter archive"]},
+  {code:"M7", title:"Impact equivalency visual", cls:"sh-impact", anchor:"#where-your-money-goes", ctag:"Shared content",
+   what:"'Where your money goes' plus the tier math ($15 = 1 med pack, and so on). The trust lever.",
+   gb:"GenerateBlocks Container with a single clean custom visual (not a pie-chart cliche) and tier rows. Count-up on scroll via a small reduced-motion-safe script. Fixed copy from one source so tiers stay consistent.",
+   slots:["Cost-breakdown visual","Tier rows ($15 / $25 / $50 / $100)","Link to the full Impact page"],
+   responsive:"Single column on mobile; count-up animation respects reduced-motion.",
+   ref:"Apple environment 'by the numbers'.",
+   pages:["Impact","Become a Monthly Supporter","Homepage (teaser)"]},
+  {code:"M8", title:"Named-person story", cls:"sh-person", anchor:"#person", ctag:"Content varies",
+   what:"One face, one name, their own words, followed over time. The number-one unmet content request.",
+   gb:"GenerateBlocks Container, portrait-led, with name, quote, and a touchpoint timeline. Consent and security live in the editorial workflow, not in GB. This is the one module the first launch does not build; Beneficiary Stories introduces it.",
+   slots:["Strong portrait","Name and own words","Timeline of touchpoints"],
+   responsive:"Portrait scales; keep text legible; resilience not suffering imagery.",
+   ref:"National Geographic portraiture.",
+   pages:["Beneficiary Stories"]},
+  {code:"M9", title:"Inline give CTA", cls:"sh-give-cta", anchor:"#give-cta", ctag:"Shared pattern",
+   what:"A contextual ask embedded inside stories, framed as invitation not guilt.",
+   gb:"Small reusable synced pattern: GB Container plus Headline plus Button. Build once, insert into story and page templates. Tie the tier language to the M7 equivalencies.",
+   slots:["Short invitation line","Button to /give or /give/monthly"],
+   responsive:"Full-width button on mobile; never interrupts the read with a hard sell.",
+   ref:"No external reference (utility pattern).",
+   pages:["Homepage","Stories","Field Dispatch","Monthly","most pages"]},
+  {code:"M10", title:"Owned donate form", cls:"sh-donate", anchor:"#give", ctag:"Config plus embed",
+   what:"The embedded inline donation form on an owned URL, NOT a modal. Express pay up top, monthly default.",
+   gb:"GenerateBlocks Container that embeds the FundraiseUp Donation Form element (their inline embed, confirmed). Reserve height to avoid layout shift. Wire GA4-via-GTM + cross-domain tracking so the form stays visible to analytics. Configure express pay, monthly default, confirmation, receipt, and an 'are you sure?' on close in FRU.",
+   slots:["FRU inline form embed","Express-pay row","Trust signals near the CTA"],
+   responsive:"One-tap express pay up top; QA every browser and mobile combination as a launch gate.",
+   ref:"Stripe / Apple Pay checkout clarity.",
+   pages:["Give","Become a Monthly Supporter","One-Time and Major Gifts","Podcast landing pages"]},
+  {code:"M11", title:"Media / borrowed-trust logos", cls:"sh-logos", anchor:"#as-heard-on", ctag:"Shared content",
+   what:"MrBallen, Jocko, BRCC logos as social proof: 'you heard us here.'",
+   gb:"GenerateBlocks Container or Grid of greyscale logo images, each linking to the matching Watch or podcast landing page.",
+   slots:["Greyscale partner logos","Link target per logo"],
+   responsive:"Single row, wrap to two on mobile; tap targets at least 44px.",
+   ref:"No external reference (utility pattern).",
+   pages:["Homepage","Watch"]},
+  {code:"M12", title:"Sticky give/subscribe bar", cls:"sh-sticky-cta", anchor:"(global)", ctag:"Shared component",
+   what:"The persistent Donate plus newsletter capture; on long pages a slim sticky CTA that keeps the next action in reach.",
+   gb:"A sticky-positioned GenerateBlocks Container with a Donate button and newsletter field. Appears after the hero, collapses on scroll-up via a small script, and never covers content on mobile.",
+   slots:["Donate button","Newsletter field"],
+   responsive:"Slim on mobile; collapses on scroll-up; must never overlap tap targets.",
+   ref:"Apple sticky buy bar.",
+   pages:["Homepage","all long pages"]},
+  {code:"M13", title:"FAQ / answer block", cls:"sh-faq", anchor:"#faq", ctag:"Content set",
+   what:"A question-led accordion that is also the AEO surface (answer-engine optimization).",
+   gb:"GenerateBlocks Accordion, or native details elements, for real expand and collapse. Add FAQPage schema via a code block. Write answer-first responses of 40 to 60 words.",
+   slots:["Question and answer pairs","FAQPage schema"],
+   responsive:"Full-width accordion; large tap targets.",
+   ref:"No external reference (utility pattern).",
+   pages:["Footer","Impact","Where We Work (AEO)"]},
+  {code:"M14", title:"Newsletter capture", cls:"sh-newsletter", anchor:"#newsletter", ctag:"Shared component",
+   what:"Sitewide email opt-in, a core supporter retention channel.",
+   gb:"GenerateBlocks Container with a single-field email form (Mailchimp embed). Lives in the footer and inline on stories. Reserve height; keep it to one field.",
+   slots:["Single email field","Submit button"],
+   responsive:"Single field, full-width on mobile; reserve height to avoid layout shift.",
+   ref:"No external reference (utility pattern).",
+   pages:["Footer (sitewide)","Stories","Field Dispatch","Homepage"]}
+];
+
+const modByCode = Object.fromEntries(MODULES.map(m=>[m.code,m]));
+const FUTURE_MODULES = ['M8'];
+function linkifyModules(text){
+  return text.replace(/\bM(1[0-4]|[1-9])\b/g, (mm)=> modByCode[mm] ? `<button class="modref" data-mod="${mm}" title="Click to expand ${mm}">${mm}</button>` : mm);
+}
+function moduleInlineHTML(m){
+  const fut = FUTURE_MODULES.includes(m.code);
+  return `<div class="modcard">
+    <div class="modcard-h"><b>${m.code} · ${m.title}</b> <code>${m.cls}</code>
+      <span class="mod-launch ${fut?'fut':'now'}">${fut?'Built in a future phase':'Built at launch'}</span></div>
+    <div class="modcard-b">${m.what}</div>
+    <div class="modcard-pages">Used on: ${m.pages.join(' · ')}</div>
+  </div>`;
+}
+
+function moduleRowHTML(m){
+  return `<div class="node" data-mid="${m.code}">
+    <div class="row" data-mid="${m.code}">
+      <div class="rank" style="font-size:13px">${m.code}</div>
+      <div style="flex:1">
+        <div class="rtitle">${m.title}</div>
+        <div class="rmeta"><code>${m.cls}</code> <span class="sc mid">${m.ctag}</span> <span class="mod-launch ${FUTURE_MODULES.includes(m.code)?'fut':'now'}">${FUTURE_MODULES.includes(m.code)?'Future phase':'At launch'}</span></div>
+        <div class="rdesc">${m.what}</div>
+      </div>
+    </div>
+  </div>`;
+}
+document.getElementById('moduleRoot').innerHTML = MODULES.map(moduleRowHTML).join('');
+document.getElementById('moduleCount').textContent = MODULES.length + " modules";
+
+function renderModule(m){
+  const host = document.getElementById('detailHost');
+  host.innerHTML = `
+  <div class="detail-card">
+    <div class="dc-head">
+      <div class="dc-crumb">Module library › ${m.code}</div>
+      <h2 class="dc-title">${m.code} · ${m.title}</h2>
+      <div class="dc-tags">
+        <code>${m.cls}</code>
+        <code>${m.anchor}</code>
+        <span class="sc mid">${m.ctag}</span>
+        <span class="mod-launch ${FUTURE_MODULES.includes(m.code)?'fut':'now'}">${FUTURE_MODULES.includes(m.code)?'Built in a future phase':'Built at launch'}</span>
+      </div>
+    </div>
+    <div class="dc-body">
+      <div class="blk"><h4>What it is</h4><div class="why">${m.what}</div></div>
+      <div class="blk"><h4>Build it in GenerateBlocks</h4><div class="modln">${m.gb}</div></div>
+      <div class="blk"><h4>Content slots</h4><ul class="clean">${m.slots.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+      <div class="blk"><h4>Responsive &amp; motion</h4><div class="why" style="font-size:13.5px">${m.responsive}</div></div>
+      <div class="blk"><h4>Premium reference</h4><div class="why" style="font-size:13.5px">${m.ref}</div></div>
+      <div class="blk"><h4>Used on</h4><div class="scorechips">${m.pages.map(p=>`<span class="sc low">${p}</span>`).join(' ')}</div></div>
+    </div>
+  </div>`;
+  const dp=document.querySelector('.detail'); if(dp) dp.scrollTop=0;
+  if(window.matchMedia('(max-width:900px)').matches){ const dh=document.getElementById('detailHost'); if(dh) dh.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+
+document.getElementById('moduleRoot').addEventListener('click',e=>{
+  const row = e.target.closest('.row'); if(!row) return;
+  const m = MODULES.find(x=>x.code===row.dataset.mid); if(!m) return;
+  document.querySelectorAll('.row').forEach(r=>r.classList.remove('sel'));
+  row.classList.add('sel');
+  renderModule(m);
+});
+
+// ---- detail ----
+let currentLens = 'm';
+function renderDetail(d){
+  currentLens = 'm';
+  const host = document.getElementById('detailHost');
+  const crumb = d.parent ? (byId[d.parent].title + ' › ' + d.title)
+             : (d.under ? (d.under + ' › ' + d.title) : d.title);
+  const tierTag = d.tier==='mvp'
+      ? '<span class="verdict v-quick">First Launch</span>'
+      : (()=>{const[vc,vl]=VERDICT[d.verdict];return `<span class="verdict ${vc}">${vl}</span>`;})();
+
+  let prioBlock = '';
+  if(d.tier==='future'){
+    const row=(ax,o,isCost)=>{
+      const bg=isCost?costBg(o.s):valBg(o.s), fg=isCost?costFg(o.s):valFg(o.s);
+      return `<div class="prio-row">
+        <div class="ax">${ax}</div>
+        <div class="scbig" style="background:${bg};color:${fg}">${o.s}</div>
+        <div class="sw">${o.why}</div>
+      </div>`;
+    };
+    const [vc,vl]=VERDICT[d.verdict];
+    prioBlock = `
+      <div class="blk">
+        <h4>Build priority, why these scores</h4>
+        <div class="prio">
+          ${row('Business value', d.bv, false)}
+          ${row('Supporter value', d.sv, false)}
+          ${row('Level of effort', d.loe, true)}
+        </div>
+        <div class="verdict-line"><span class="verdict ${vc}">${vl}</span> <span>Recommended sequence: <b style="color:#fff">#${d.rank}</b> of ${future.length}</span></div>
+        ${d.block?`<div class="blocker">⚠ ${d.block}</div>`:''}
+      </div>`;
+  }
+
+  host.innerHTML = `
+  <div class="detail-card">
+    <div class="dc-head">
+      <div class="dc-crumb">${crumb}</div>
+      <h2 class="dc-title">${d.title}</h2>
+      <div class="dc-tags">
+        <span class="pill pr-${d.priority||'High'}">${d.priority||'Backlog'}</span>
+        ${tierTag}
+        ${d.new?'<span class="new-badge">New page</span>':'<span class="phase-tag" style="font-size:9.5px;color:var(--txt-dim);border:1px solid var(--line-strong);border-radius:5px;padding:2px 7px;text-transform:uppercase;letter-spacing:.04em">Exists today</span>'}
+      </div>
+    </div>
+    <div class="dc-body">
+      <div class="blk">
+        <h4>Why this page exists</h4>
+        <div class="why">${d.why}</div>
+      </div>
+      <div class="blk">
+        <h4>What goes on it</h4>
+        <ul class="clean">${d.content.map(c=>`<li>${c}</li>`).join('')}</ul>
+      </div>
+      <div class="blk">
+        <h4>What success looks like</h4>
+        <div class="metric"><ul>${d.metric.map(m=>`<li>${m}</li>`).join('')}</ul></div>
+      </div>
+      ${prioBlock}
+      <div class="blk">
+        <h4>Modules</h4>
+        <div class="modln">${linkifyModules(d.modules)}</div>
+        <div class="modhint">Tap any module code (M1, M2 ...) to expand what it is and where it is used.</div>
+        <div class="modexpand" id="modExpand"></div>
+      </div>
+      <div class="blk">
+        <h4>The three-lens read</h4>
+        <div class="lenswrap">
+          <div class="lenstabs">
+            <button class="lenstab ${currentLens==='m'?'active':''}" data-lens="m">${LENS.m}</button>
+            <button class="lenstab ${currentLens==='u'?'active':''}" data-lens="u">${LENS.u}</button>
+            <button class="lenstab ${currentLens==='c'?'active':''}" data-lens="c">${LENS.c}</button>
+          </div>
+          <div class="lensbody" id="lensBody">${d[currentLens]}</div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  const dp=document.querySelector('.detail'); if(dp) dp.scrollTop=0;
+  if(window.matchMedia('(max-width:900px)').matches){ const dh=document.getElementById('detailHost'); if(dh) dh.scrollIntoView({behavior:'smooth',block:'start'}); }
+  host.querySelectorAll('.lenstab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      currentLens=t.dataset.lens;
+      document.getElementById('lensBody').innerHTML=d[currentLens];
+      host.querySelectorAll('.lenstab').forEach(x=>x.classList.toggle('active',x.dataset.lens===currentLens));
+    });
+  });
+  let openMod=null;
+  host.querySelectorAll('.modref').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const code=b.dataset.mod, box=document.getElementById('modExpand');
+      if(!box||!modByCode[code]) return;
+      if(openMod===code){ box.innerHTML=''; openMod=null; host.querySelectorAll('.modref').forEach(x=>x.classList.remove('on')); return; }
+      openMod=code; box.innerHTML=moduleInlineHTML(modByCode[code]);
+      host.querySelectorAll('.modref').forEach(x=>x.classList.toggle('on',x.dataset.mod===code));
+    });
+  });
+}
+
+// ---- selection (event delegation on both roots) ----
+function wireRoot(rootId){
+  document.getElementById(rootId).addEventListener('click',e=>{
+    const row = e.target.closest('.row');
+    if(!row) return;
+    const id = row.dataset.id;
+    const d = byId[id];
+    const kidsWrap = document.querySelector(`[data-children="${id}"]`);
+    if(e.target.classList.contains('twist') && kidsWrap){
+      kidsWrap.style.display = (kidsWrap.style.display==='none')?'block':'none';
+      e.target.classList.toggle('open');
+      return;
+    }
+    document.querySelectorAll('.row').forEach(r=>r.classList.remove('sel'));
+    row.classList.add('sel');
+    renderDetail(d);
+  });
+}
+wireRoot('mvpRoot');
+wireRoot('futureRoot');
+
+// ---- view toggle ----
+document.getElementById('viewChips').addEventListener('click',e=>{
+  const chip = e.target.closest('.chip'); if(!chip) return;
+  document.querySelectorAll('#viewChips .chip').forEach(c=>c.classList.remove('active'));
+  chip.classList.add('active');
+  const v = chip.dataset.view;
+  document.getElementById('mvpBlock').classList.toggle('hidden', !(v==='all'||v==='mvp'));
+  document.getElementById('futureBlock').classList.toggle('hidden', !(v==='all'||v==='future'));
+  document.getElementById('moduleBlock').classList.toggle('hidden', v!=='modules');
+  document.getElementById('sortwrap').classList.toggle('hidden', !(v==='all'||v==='future'));
+});
+
+// ---- sort control ----
+document.getElementById('sortwrap').addEventListener('click',e=>{
+  const b = e.target.closest('.mini'); if(!b) return;
+  document.querySelectorAll('#sortwrap .mini').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  futureSort = b.dataset.sort;
+  renderFuture();
+});
+
+// ---- default: start on MVP view ----
+document.getElementById('futureBlock').classList.add('hidden');
+document.getElementById('moduleBlock').classList.add('hidden');
+document.getElementById('sortwrap').classList.add('hidden');
+renderDetail(byId['home']);
+document.querySelector('.row[data-id="home"]').classList.add('sel');
+</script>
+</body>
+</html>
